@@ -1,71 +1,41 @@
-import { useState } from "react";
+<div className="mt-6">
+  <h3 className="font-bold text-lg">
+    Recommendations
+  </h3>
 
-export default function CarbonForm({ addEntry }) {
-  const [transport, setTransport] = useState("");
-  const [electricity, setElectricity] = useState("");
-  const [food, setFood] = useState("");
+  <ul className="list-disc ml-5">
+    {entries.length > 0 && (
+      <>
+        {entries[entries.length - 1].transport > 20 && (
+          <li>
+            Your travel emissions are high. Consider public transport, cycling, or carpooling.
+          </li>
+        )}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+        {entries[entries.length - 1].electricity > 10 && (
+          <li>
+            Your electricity consumption is above average. Switch off unused appliances and use LED bulbs.
+          </li>
+        )}
 
-    const footprint =
-      transport * 0.21 +
-      electricity * 0.5 +
-      food * 2;
+        {entries[entries.length - 1].food > 2 && (
+          <li>
+            Meat consumption contributes significantly to emissions. Try adding more plant-based meals.
+          </li>
+        )}
 
-    addEntry({
-      transport,
-      electricity,
-      food,
-      footprint,
-      date: new Date().toLocaleDateString()
-    });
+        {entries[entries.length - 1].transport <= 20 &&
+          entries[entries.length - 1].electricity <= 10 &&
+          entries[entries.length - 1].food <= 2 && (
+            <li>
+              Excellent! Your lifestyle choices are already environmentally friendly.
+            </li>
+          )}
 
-    setTransport("");
-    setElectricity("");
-    setFood("");
-  };
-
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">
-        Carbon Calculator
-      </h2>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="Travel Distance (km)"
-          className="w-full border p-3 mb-3 rounded"
-          value={transport}
-          onChange={(e) => setTransport(e.target.value)}
-          required
-        />
-
-        <input
-          type="number"
-          placeholder="Electricity Usage (kWh)"
-          className="w-full border p-3 mb-3 rounded"
-          value={electricity}
-          onChange={(e) => setElectricity(e.target.value)}
-          required
-        />
-
-        <input
-          type="number"
-          placeholder="Meat Meals Per Day"
-          className="w-full border p-3 mb-3 rounded"
-          value={food}
-          onChange={(e) => setFood(e.target.value)}
-          required
-        />
-
-        <button
-          className="bg-green-600 text-white px-5 py-3 rounded-lg w-full"
-        >
-          Calculate Footprint
-        </button>
-      </form>
-    </div>
-  );
-}
+        <li>
+          Support renewable energy and sustainable living practices.
+        </li>
+      </>
+    )}
+  </ul>
+</div>
