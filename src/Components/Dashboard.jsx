@@ -4,144 +4,212 @@ function Dashboard({ entries, clearHistory }) {
       ? entries[entries.length - 1]
       : null;
 
-  const getStatus = () => {
-    if (!latest) return "";
+  const getStatus = (value) => {
+    if (value < 20)
+      return {
+        text: "Sustainable",
+        color: "bg-green-100 text-green-700",
+      };
 
-    if (latest.total < 20) return "🌱 Excellent";
-    if (latest.total < 50) return "🌿 Moderate";
-    return "🔥 High";
+    if (value < 50)
+      return {
+        text: "Moderate",
+        color: "bg-yellow-100 text-yellow-700",
+      };
+
+    return {
+      text: "High Impact",
+      color: "bg-red-100 text-red-700",
+    };
   };
 
-  return (
-    <div className="bg-gradient-to-br from-green-100 to-emerald-50 p-6 rounded-3xl shadow-xl border border-green-200">
-      <h2 className="text-3xl font-bold text-center text-green-700 mb-4">
-        🌍 Eco Dashboard
-      </h2>
+  if (!latest) {
+    return (
+      <div className="bg-white rounded-3xl shadow-xl p-8">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">
+          🌍 Carbon Analytics Dashboard
+        </h2>
 
-      {entries.length === 0 ? (
-        <div className="text-center py-10">
-          <div className="text-6xl mb-3">🐣</div>
-          <p className="text-gray-600 text-lg">
-            No records yet.
-          </p>
-          <p className="text-sm text-gray-500">
-            Start calculating your carbon footprint!
+        <div className="flex flex-col items-center justify-center h-80">
+          <div className="text-6xl mb-4">🌱</div>
+
+          <h3 className="text-xl font-semibold text-gray-700">
+            No Data Available
+          </h3>
+
+          <p className="text-gray-500 mt-2">
+            Start by calculating your carbon footprint.
           </p>
         </div>
-      ) : (
-        <>
-          {/* Latest Footprint Card */}
-          <div className="bg-white rounded-2xl shadow-md p-5 mb-5">
-            <h3 className="text-xl font-bold mb-2 text-green-700">
-              📊 Latest Carbon Footprint
-            </h3>
+      </div>
+    );
+  }
 
-            <p className="text-4xl font-bold text-red-500">
-              {latest.total} kg CO₂
-            </p>
+  const status = getStatus(Number(latest.total));
 
-            <div className="mt-3 inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
-              {getStatus()}
-            </div>
-          </div>
+  return (
+    <div className="bg-white rounded-3xl shadow-xl p-8">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-800">
+          🌍 Carbon Analytics Dashboard
+        </h2>
 
-          {/* Cute Stats */}
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            <div className="bg-blue-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl">🚗</div>
-              <p className="font-bold">{latest.transport}</p>
-              <p className="text-sm">km</p>
-            </div>
+        <span
+          className={`px-4 py-2 rounded-full font-medium ${status.color}`}
+        >
+          {status.text}
+        </span>
+      </div>
 
-            <div className="bg-yellow-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl">💡</div>
-              <p className="font-bold">{latest.electricity}</p>
-              <p className="text-sm">kWh</p>
-            </div>
+      {/* Carbon Score */}
+      <div className="bg-gradient-to-r from-green-600 to-emerald-500 rounded-3xl p-8 text-white mb-8">
+        <p className="uppercase text-sm tracking-wider opacity-80">
+          Current Carbon Footprint
+        </p>
 
-            <div className="bg-pink-100 p-4 rounded-2xl text-center">
-              <div className="text-3xl">🍔</div>
-              <p className="font-bold">{latest.food}</p>
-              <p className="text-sm">kg</p>
-            </div>
-          </div>
+        <h1 className="text-5xl font-bold mt-2">
+          {latest.total}
+        </h1>
 
-          {/* Recommendations */}
-          <div className="bg-white rounded-2xl shadow-md p-5 mb-5">
-            <h3 className="text-xl font-bold text-green-700 mb-3">
-              🌿 Eco Tips
-            </h3>
+        <p className="text-lg opacity-90">
+          kg CO₂ Equivalent
+        </p>
+      </div>
 
-            <ul className="space-y-2">
-              {latest.transport > 20 && (
-                <li>
-                  🚲 Try cycling, walking or public transport.
-                </li>
-              )}
+      {/* Statistics */}
+      <div className="grid md:grid-cols-3 gap-5 mb-8">
+        <div className="bg-blue-50 rounded-2xl p-6 shadow-sm">
+          <p className="text-gray-500 mb-2">
+            🚗 Transportation
+          </p>
 
-              {latest.electricity > 10 && (
-                <li>
-                  💡 Switch off unused appliances and use LEDs.
-                </li>
-              )}
+          <h3 className="text-3xl font-bold text-blue-600">
+            {latest.transport}
+          </h3>
 
-              {latest.food > 2 && (
-                <li>
-                  🥗 Add more plant-based meals to your diet.
-                </li>
-              )}
+          <p className="text-sm text-gray-500">
+            km travelled
+          </p>
+        </div>
 
-              {latest.transport <= 20 &&
-                latest.electricity <= 10 &&
-                latest.food <= 2 && (
-                  <li>
-                    🌟 Amazing! Your lifestyle is eco-friendly.
-                  </li>
-                )}
+        <div className="bg-yellow-50 rounded-2xl p-6 shadow-sm">
+          <p className="text-gray-500 mb-2">
+            ⚡ Electricity
+          </p>
 
+          <h3 className="text-3xl font-bold text-yellow-600">
+            {latest.electricity}
+          </h3>
+
+          <p className="text-sm text-gray-500">
+            kWh consumed
+          </p>
+        </div>
+
+        <div className="bg-red-50 rounded-2xl p-6 shadow-sm">
+          <p className="text-gray-500 mb-2">
+            🍽️ Food Impact
+          </p>
+
+          <h3 className="text-3xl font-bold text-red-600">
+            {latest.food}
+          </h3>
+
+          <p className="text-sm text-gray-500">
+            kg consumption
+          </p>
+        </div>
+      </div>
+
+      {/* Sustainability Insights */}
+      <div className="bg-gray-50 rounded-2xl p-6 mb-8">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">
+          💡 Sustainability Insights
+        </h3>
+
+        <ul className="space-y-3 text-gray-700">
+          {latest.transport > 20 && (
+            <li>
+              • Consider public transport, cycling, or
+              carpooling to reduce emissions.
+            </li>
+          )}
+
+          {latest.electricity > 10 && (
+            <li>
+              • Reduce electricity usage by switching
+              to LED lighting and energy-efficient
+              appliances.
+            </li>
+          )}
+
+          {latest.food > 2 && (
+            <li>
+              • Incorporate more plant-based meals into
+              your weekly diet.
+            </li>
+          )}
+
+          {latest.transport <= 20 &&
+            latest.electricity <= 10 &&
+            latest.food <= 2 && (
               <li>
-                🌎 Support renewable energy whenever possible.
+                • Excellent sustainability performance.
+                Keep maintaining eco-friendly habits.
               </li>
-            </ul>
-          </div>
+            )}
 
-          {/* History */}
-          <div className="bg-white rounded-2xl shadow-md p-5">
-            <h3 className="text-xl font-bold text-green-700 mb-3">
-              📅 Footprint History
-            </h3>
+          <li>
+            • Support renewable energy and sustainable
+            lifestyle choices whenever possible.
+          </li>
+        </ul>
+      </div>
 
-            <div className="max-h-56 overflow-y-auto">
-              {entries
-                .slice()
-                .reverse()
-                .map((entry, index) => (
-                  <div
-                    key={index}
-                    className="bg-green-50 border border-green-100 p-3 rounded-xl mb-2"
-                  >
-                    <div className="flex justify-between">
-                      <span>🌱 {entry.total} kg CO₂</span>
-                      <span className="text-xs text-gray-500">
-                        {entry.date}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
+      {/* History */}
+      <div>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-semibold text-gray-800">
+            📈 Activity History
+          </h3>
 
-          {/* Clear Button */}
-          <div className="text-center mt-6">
-            <button
-              onClick={clearHistory}
-              className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg transition"
-            >
-              🗑️ Clear History
-            </button>
-          </div>
-        </>
-      )}
+          <button
+            onClick={clearHistory}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
+          >
+            Clear Data
+          </button>
+        </div>
+
+        <div className="space-y-3 max-h-64 overflow-y-auto">
+          {entries
+            .slice()
+            .reverse()
+            .map((entry, index) => (
+              <div
+                key={index}
+                className="border border-gray-200 rounded-xl p-4 flex justify-between items-center"
+              >
+                <div>
+                  <p className="font-semibold text-gray-800">
+                    {entry.total} kg CO₂
+                  </p>
+
+                  <p className="text-sm text-gray-500">
+                    Transport: {entry.transport} km |
+                    Electricity: {entry.electricity} kWh |
+                    Food: {entry.food} kg
+                  </p>
+                </div>
+
+                <span className="text-xs text-gray-500">
+                  {entry.date}
+                </span>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }
