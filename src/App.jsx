@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import CarbonForm from "./components/CarbonForm";
-import Dashboard from "./components/Dashboard";
+import CarbonForm from "./Components/CarbonForm";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
   const [entries, setEntries] = useState([]);
