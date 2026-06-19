@@ -8,19 +8,13 @@ function App() {
   useEffect(() => {
     const saved =
       JSON.parse(localStorage.getItem("carbonData")) || [];
-
     setEntries(saved);
   }, []);
 
   const addEntry = (entry) => {
     const updated = [...entries, entry];
-
     setEntries(updated);
-
-    localStorage.setItem(
-      "carbonData",
-      JSON.stringify(updated)
-    );
+    localStorage.setItem("carbonData", JSON.stringify(updated));
   };
 
   const clearHistory = () => {
@@ -40,7 +34,6 @@ function App() {
 
       <div className="grid md:grid-cols-2 gap-8">
         <CarbonForm addEntry={addEntry} />
-
         <Dashboard
           entries={entries}
           clearHistory={clearHistory}
