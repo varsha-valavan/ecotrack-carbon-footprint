@@ -4,66 +4,90 @@ function Dashboard({ entries, clearHistory }) {
       ? entries[entries.length - 1]
       : null;
 
+  const getStatus = () => {
+    if (!latest) return "";
+
+    if (latest.total < 20) return "🌱 Excellent";
+    if (latest.total < 50) return "🌿 Moderate";
+    return "🔥 High";
+  };
+
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-green-700">
-        Dashboard
+    <div className="bg-gradient-to-br from-green-100 to-emerald-50 p-6 rounded-3xl shadow-xl border border-green-200">
+      <h2 className="text-3xl font-bold text-center text-green-700 mb-4">
+        🌍 Eco Dashboard
       </h2>
 
       {entries.length === 0 ? (
-        <p>No records available.</p>
+        <div className="text-center py-10">
+          <div className="text-6xl mb-3">🐣</div>
+          <p className="text-gray-600 text-lg">
+            No records yet.
+          </p>
+          <p className="text-sm text-gray-500">
+            Start calculating your carbon footprint!
+          </p>
+        </div>
       ) : (
         <>
-          <div className="mb-4">
-            <h3 className="font-bold text-lg">
-              Latest Carbon Footprint
+          {/* Latest Footprint Card */}
+          <div className="bg-white rounded-2xl shadow-md p-5 mb-5">
+            <h3 className="text-xl font-bold mb-2 text-green-700">
+              📊 Latest Carbon Footprint
             </h3>
 
-            <p className="text-xl text-red-600">
+            <p className="text-4xl font-bold text-red-500">
               {latest.total} kg CO₂
             </p>
+
+            <div className="mt-3 inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
+              {getStatus()}
+            </div>
           </div>
 
-          <div className="mb-4">
-            <h3 className="font-bold text-lg">
-              History
+          {/* Cute Stats */}
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            <div className="bg-blue-100 p-4 rounded-2xl text-center">
+              <div className="text-3xl">🚗</div>
+              <p className="font-bold">{latest.transport}</p>
+              <p className="text-sm">km</p>
+            </div>
+
+            <div className="bg-yellow-100 p-4 rounded-2xl text-center">
+              <div className="text-3xl">💡</div>
+              <p className="font-bold">{latest.electricity}</p>
+              <p className="text-sm">kWh</p>
+            </div>
+
+            <div className="bg-pink-100 p-4 rounded-2xl text-center">
+              <div className="text-3xl">🍔</div>
+              <p className="font-bold">{latest.food}</p>
+              <p className="text-sm">kg</p>
+            </div>
+          </div>
+
+          {/* Recommendations */}
+          <div className="bg-white rounded-2xl shadow-md p-5 mb-5">
+            <h3 className="text-xl font-bold text-green-700 mb-3">
+              🌿 Eco Tips
             </h3>
 
             <ul className="space-y-2">
-              {entries.map((entry, index) => (
-                <li
-                  key={index}
-                  className="border p-2 rounded"
-                >
-                  {entry.date} — {entry.total} kg CO₂
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-6">
-            <h3 className="font-bold text-lg">
-              Recommendations
-            </h3>
-
-            <ul className="list-disc ml-5">
               {latest.transport > 20 && (
                 <li>
-                  Use public transport, cycling, or
-                  carpooling.
+                  🚲 Try cycling, walking or public transport.
                 </li>
               )}
 
               {latest.electricity > 10 && (
                 <li>
-                  Reduce electricity usage and switch to
-                  LED bulbs.
+                  💡 Switch off unused appliances and use LEDs.
                 </li>
               )}
 
               {latest.food > 2 && (
                 <li>
-                  Consider more plant-based meals.
+                  🥗 Add more plant-based meals to your diet.
                 </li>
               )}
 
@@ -71,24 +95,51 @@ function Dashboard({ entries, clearHistory }) {
                 latest.electricity <= 10 &&
                 latest.food <= 2 && (
                   <li>
-                    Excellent! Your lifestyle is already
-                    eco-friendly.
+                    🌟 Amazing! Your lifestyle is eco-friendly.
                   </li>
                 )}
 
               <li>
-                Support renewable energy and sustainable
-                living practices.
+                🌎 Support renewable energy whenever possible.
               </li>
             </ul>
           </div>
 
-          <button
-            onClick={clearHistory}
-            className="mt-6 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            Clear History
-          </button>
+          {/* History */}
+          <div className="bg-white rounded-2xl shadow-md p-5">
+            <h3 className="text-xl font-bold text-green-700 mb-3">
+              📅 Footprint History
+            </h3>
+
+            <div className="max-h-56 overflow-y-auto">
+              {entries
+                .slice()
+                .reverse()
+                .map((entry, index) => (
+                  <div
+                    key={index}
+                    className="bg-green-50 border border-green-100 p-3 rounded-xl mb-2"
+                  >
+                    <div className="flex justify-between">
+                      <span>🌱 {entry.total} kg CO₂</span>
+                      <span className="text-xs text-gray-500">
+                        {entry.date}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Clear Button */}
+          <div className="text-center mt-6">
+            <button
+              onClick={clearHistory}
+              className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg transition"
+            >
+              🗑️ Clear History
+            </button>
+          </div>
         </>
       )}
     </div>
