@@ -1,16 +1,175 @@
-# React + Vite
+# 🌱 EcoTrack – Carbon Footprint Awareness Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+EcoTrack is a web-based Carbon Footprint Awareness Platform designed to help individuals understand, monitor, and reduce their daily environmental impact. The application enables users to calculate carbon emissions based on everyday activities and provides an intuitive dashboard for tracking sustainability progress.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The goal of EcoTrack is to promote environmental awareness by transforming complex carbon footprint calculations into an accessible and interactive user experience.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Problem Statement
 
-## Expanding the ESLint configuration
+Many people are unaware of how their daily lifestyle choices contribute to carbon emissions and climate change. Existing solutions often present environmental data in a complex manner that discourages regular usage and engagement.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+EcoTrack addresses this challenge by providing a simple, user-friendly platform that helps users:
+
+* Calculate their carbon footprint
+* Visualize environmental impact
+* Monitor historical records
+* Build sustainable habits
+
+---
+
+## Features
+
+### 🌍 Carbon Footprint Calculator
+
+Calculate estimated carbon emissions based on daily activities and lifestyle choices.
+
+### 📊 Interactive Dashboard
+
+View carbon footprint results through an easy-to-understand dashboard.
+
+### 📈 Historical Tracking
+
+Store and review previous calculations to monitor progress over time.
+
+### 🏆 Sustainability Status Indicator
+
+Receive instant feedback categorized as:
+
+* Sustainable
+* Moderate Impact
+* High Impact
+
+### 📄 PDF Report Generation
+
+Generate downloadable reports for personal tracking and analysis.
+
+### 💾 Local Data Persistence
+
+User records are securely stored in browser local storage for quick access.
+
+### 📱 Responsive Design
+
+Optimized for desktops, tablets, and mobile devices.
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React.js
+* JavaScript (ES6+)
+* HTML5
+* CSS3
+* Tailwind CSS
+
+### Libraries
+
+* jsPDF
+* jsPDF-AutoTable
+* React Hooks
+
+### Deployment
+
+* Vercel
+
+---
+
+## Project Architecture
+
+```text
+src/
+├── Components/
+│   ├── CarbonForm.jsx
+│   ├── Dashboard.jsx
+│   └── CarbonChart.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/varsha-valavan/ecotrack-carbon-footprint.git
+```
+
+### Navigate to Project
+
+```bash
+cd ecotrack-carbon-footprint
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+## Live Demo
+
+Deployment URL:
+
+https://ecotrack-carbon-footprint-h7pl-faxozs104.vercel.app/
+
+---
+
+## Impact
+
+EcoTrack encourages environmentally responsible decision-making by helping users visualize how daily activities affect carbon emissions. By providing actionable awareness, the platform promotes sustainable living and supports broader climate-conscious initiatives.
+
+---
+
+## Future Enhancements
+
+* AI-powered sustainability recommendations
+* Personalized carbon reduction goals
+* Community challenges and leaderboards
+* Monthly sustainability reports
+* Cloud database integration
+* User authentication and profiles
+
+---
+
+## Key Learnings
+
+During the development of EcoTrack, the following skills were strengthened:
+
+* React component architecture
+* State management with React Hooks
+* Data persistence using Local Storage
+* PDF report generation
+* Responsive UI design
+* Frontend deployment using Vercel
+
+---
+
+## Author
+
+Varsha V
+
+GitHub:
+https://github.com/varsha-valavan
+
+Project Repository:
+https://github.com/varsha-valavan/ecotrack-carbon-footprint
+
+---
+
+## License
+
+This project is developed for educational, sustainability awareness, and hackathon purposes.
