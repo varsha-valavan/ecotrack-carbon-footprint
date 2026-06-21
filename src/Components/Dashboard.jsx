@@ -29,6 +29,9 @@ function Dashboard({ entries, clearHistory }) {
   if (!latest) {
     return (
       <div className="bg-white rounded-3xl shadow-xl p-8">
+        role="main"
+        aria-label="Carbon Analytics Dashboard"
+        
         <h2 className="text-3xl font-bold text-gray-800 mb-6">
           🌍 Carbon Analytics Dashboard
         </h2>
@@ -275,6 +278,7 @@ function Dashboard({ entries, clearHistory }) {
           <div className="flex gap-3">
             <button
               onClick={downloadReport}
+              aria-label="Download carbon footprint report"
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
             >
               📄 Download Report
@@ -282,6 +286,7 @@ function Dashboard({ entries, clearHistory }) {
 
             <button
               onClick={clearHistory}
+              aria-label="Clear carbon footprint history"
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
             >
               Clear Data
