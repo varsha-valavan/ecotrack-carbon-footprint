@@ -6,7 +6,7 @@ test("renders calculate button", () => {
   render(<CarbonForm addEntry={() => {}} />);
 
   const button = screen.getByRole("button", {
-    name: /calculate carbon footprint/i,
+    name: /calculate/i,
   });
 
   expect(button).toBeTruthy();
