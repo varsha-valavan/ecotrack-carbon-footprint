@@ -2,58 +2,101 @@
 
 ## Overview
 
-EcoTrack is a web-based Carbon Footprint Awareness Platform designed to help individuals understand, monitor, and reduce their daily environmental impact. The application enables users to calculate carbon emissions based on everyday activities and provides an intuitive dashboard for tracking sustainability progress.
+EcoTrack is a web-based Carbon Footprint Awareness Platform developed to help individuals calculate, monitor, and reduce their environmental impact through data-driven insights. The platform enables users to estimate carbon emissions from transportation, electricity consumption, and food habits while providing actionable sustainability recommendations.
 
-The goal of EcoTrack is to promote environmental awareness by transforming complex carbon footprint calculations into an accessible and interactive user experience.
+By transforming complex environmental calculations into an intuitive and interactive experience, EcoTrack promotes awareness, responsible decision-making, and sustainable living.
 
 ---
 
 ## Problem Statement
 
-Many people are unaware of how their daily lifestyle choices contribute to carbon emissions and climate change. Existing solutions often present environmental data in a complex manner that discourages regular usage and engagement.
+Climate change is one of the most significant global challenges, yet many individuals are unaware of how their everyday activities contribute to carbon emissions. Existing solutions often lack simplicity, accessibility, or meaningful visualization of environmental impact.
 
-EcoTrack addresses this challenge by providing a simple, user-friendly platform that helps users:
+EcoTrack addresses this challenge by providing a user-friendly platform that allows users to:
 
-* Calculate their carbon footprint
-* Visualize environmental impact
-* Monitor historical records
-* Build sustainable habits
+* Calculate their carbon footprint instantly
+* Track environmental impact over time
+* Generate sustainability reports
+* Receive actionable insights for reducing emissions
+* Develop environmentally responsible habits
 
 ---
 
-## Features
+## Key Features
 
 ### 🌍 Carbon Footprint Calculator
 
-Calculate estimated carbon emissions based on daily activities and lifestyle choices.
+Calculate estimated carbon emissions based on:
 
-### 📊 Interactive Dashboard
+* Transportation distance traveled
+* Electricity consumption
+* Food consumption patterns
 
-View carbon footprint results through an easy-to-understand dashboard.
+### 📊 Carbon Analytics Dashboard
 
-### 📈 Historical Tracking
+An interactive dashboard displaying:
 
-Store and review previous calculations to monitor progress over time.
+* Current carbon footprint score
+* Sustainability status indicator
+* Monthly carbon footprint summary
+* Activity statistics and environmental insights
 
-### 🏆 Sustainability Status Indicator
+### 📈 Historical Activity Tracking
 
-Receive instant feedback categorized as:
+Track and review previous calculations to monitor sustainability progress over time.
+
+### 🏆 Sustainability Status Classification
+
+Automatically categorizes users into:
 
 * Sustainable
 * Moderate Impact
 * High Impact
 
+based on their calculated carbon footprint.
+
+### 💡 Sustainability Insights
+
+Provides practical recommendations for reducing environmental impact through lifestyle improvements.
+
 ### 📄 PDF Report Generation
 
-Generate downloadable reports for personal tracking and analysis.
+Generate professional downloadable reports containing:
+
+* Carbon footprint records
+* Activity summaries
+* Historical environmental data
+* Sustainability metrics
 
 ### 💾 Local Data Persistence
 
-User records are securely stored in browser local storage for quick access.
+Stores user activity securely using browser Local Storage, ensuring data remains available across sessions.
+
+### ♿ Accessibility Enhancements
+
+Implemented accessibility improvements including:
+
+* Proper form labels
+* Accessible input fields
+* ARIA attributes for interactive elements
+* Improved usability and navigation
+
+### 🧪 Unit Testing
+
+Implemented automated testing using:
+
+* Vitest
+* React Testing Library
+
+to verify component rendering and application functionality.
 
 ### 📱 Responsive Design
 
-Optimized for desktops, tablets, and mobile devices.
+Optimized for:
+
+* Desktop
+* Tablet
+* Mobile devices
 
 ---
 
@@ -67,11 +110,17 @@ Optimized for desktops, tablets, and mobile devices.
 * CSS3
 * Tailwind CSS
 
-### Libraries
+### Libraries & Tools
 
 * jsPDF
 * jsPDF-AutoTable
 * React Hooks
+* Local Storage API
+
+### Testing
+
+* Vitest
+* React Testing Library
 
 ### Deployment
 
@@ -87,10 +136,20 @@ src/
 │   ├── CarbonForm.jsx
 │   ├── Dashboard.jsx
 │   └── CarbonChart.jsx
+│
+├── __tests__/
+│   ├── App.test.jsx
+│   ├── CarbonForm.test.jsx
+│   └── Dashboard.test.jsx
+│
 ├── App.jsx
 ├── main.jsx
-└── index.css
+├── index.css
+│
+vitest.config.js
 ```
+
+---
 
 ## Installation
 
@@ -112,36 +171,55 @@ cd ecotrack-carbon-footprint
 npm install
 ```
 
-### Start Development Server
+### Run Development Server
 
 ```bash
 npm run dev
+```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+### Build for Production
+
+```bash
+npm run build
 ```
 
 ---
 
 ## Live Demo
 
-Deployment URL:
+### Deployment URL
 
 https://ecotrack-carbon-footprint-h7pl-faxozs104.vercel.app/
+
+### GitHub Repository
+
+https://github.com/varsha-valavan/ecotrack-carbon-footprint
 
 ---
 
 ## Impact
 
-EcoTrack encourages environmentally responsible decision-making by helping users visualize how daily activities affect carbon emissions. By providing actionable awareness, the platform promotes sustainable living and supports broader climate-conscious initiatives.
+EcoTrack empowers users to understand the environmental consequences of their daily activities by providing clear visualizations, sustainability insights, and measurable carbon footprint calculations.
+
+The platform contributes to climate awareness by encouraging informed decisions and promoting sustainable behavior through continuous monitoring and reporting.
 
 ---
 
 ## Future Enhancements
 
 * AI-powered sustainability recommendations
-* Personalized carbon reduction goals
-* Community challenges and leaderboards
-* Monthly sustainability reports
-* Cloud database integration
+* Carbon footprint trend visualizations
+* Personalized reduction goals
+* Carbon offset recommendations
 * User authentication and profiles
+* Cloud database integration
+* Community sustainability challenges
 
 ---
 
@@ -151,18 +229,20 @@ During the development of EcoTrack, the following skills were strengthened:
 
 * React component architecture
 * State management with React Hooks
-* Data persistence using Local Storage
-* PDF report generation
-* Responsive UI design
+* Local Storage integration
+* PDF report generation using jsPDF
+* Unit testing with Vitest
+* Accessibility best practices
+* Responsive UI development
 * Frontend deployment using Vercel
 
 ---
 
 ## Author
 
-Varsha V
+**Varsha V**
 
-GitHub:
+GitHub Profile:
 https://github.com/varsha-valavan
 
 Project Repository:
@@ -172,4 +252,4 @@ https://github.com/varsha-valavan/ecotrack-carbon-footprint
 
 ## License
 
-This project is developed for educational, sustainability awareness, and hackathon purposes.
+This project is developed for educational purposes, sustainability awareness initiatives, and hackathon participation.
