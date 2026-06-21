@@ -35,11 +35,16 @@ function CarbonForm({ addEntry }) {
       </h2>
 
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2">
+        <label
+          htmlFor="transport"
+          className="block mb-2"
+        >
           Transport Distance (km)
         </label>
 
         <input
+          id="transport"
+          name="transport"
           type="number"
           value={transport}
           onChange={(e) => setTransport(e.target.value)}
@@ -47,11 +52,16 @@ function CarbonForm({ addEntry }) {
           required
         />
 
-        <label className="block mb-2">
+        <label
+          htmlFor="electricity"
+          className="block mb-2"
+        >
           Electricity Usage (kWh)
         </label>
 
         <input
+          id="electricity"
+          name="electricity"
           type="number"
           value={electricity}
           onChange={(e) => setElectricity(e.target.value)}
@@ -59,11 +69,16 @@ function CarbonForm({ addEntry }) {
           required
         />
 
-        <label className="block mb-2">
+        <label
+          htmlFor="food"
+          className="block mb-2"
+        >
           Meat Consumption (kg)
         </label>
 
         <input
+          id="food"
+          name="food"
           type="number"
           value={food}
           onChange={(e) => setFood(e.target.value)}
@@ -73,6 +88,7 @@ function CarbonForm({ addEntry }) {
 
         <button
           type="submit"
+          aria-label="Calculate Carbon Footprint"
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
           Calculate
